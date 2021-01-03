@@ -1,1 +1,65 @@
-d
+docker notes
+docker --version
+
+docker info
+
+docker images
+cd to project root dir where  Dockerfile is
+docker build -f Dockerfile -t docker-img-name
+docker image build -t springdocker .
+docker container run --name spgbootdocker -p 8080:8080 -d spgbootdocker
+sudo docker run -p 8080:8080 docker-spring-boot
+docket container logs viewdocker
+
+docker container ls
+docker stop pid
+
+docker network create expensemysql
+docker network ls
+docker container run --name mysqldb --network expensemysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=batch52 -d mysql:8
+
+docker image build -t springbootmysql .
+docker  container run --network expensemysql --name expense-mysql7-container -p 8080:8080 -d spgbootmysql
+
+#check output of the container
+docker container logs expense-mysql-container
+
+#remove
+docker rm pid
+
+k8
+ 
+docker image build -t app_name . 
+docker tag image_id repo/project
+
+
+docker tag 1bb0e7424eb5 dockersaran/spgbootmysql:saran
+docker push hub_id/repo:projectname
+yaml file
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spgbootmysql-demo-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spgbootmysql-demo
+  template:
+    metadata:
+      labels:
+        app: spgbootmysql-demo
+    spec:
+      containers:
+      - name: spgbootmysql-demo
+        image: dockersaran/spgbootmysql
+        ports:
+        - containerPort: 8080
+
+maven build-> clean install under "goals"
+ 
+docker pull id/repo:prjname
+kubectl apply -f yaml file name
+
